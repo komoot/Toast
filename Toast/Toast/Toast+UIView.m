@@ -33,6 +33,10 @@ static const CGFloat CSToastShadowRadius        = 6.0;
 static const CGSize  CSToastShadowOffset        = { 4.0, 4.0 };
 static const BOOL    CSToastDisplayShadow       = YES;
 
+// border configuration
+static const BOOL    CSToastDisplayBorder       = YES;
+static const CGFloat CSToastBorderWidth         = 1.0;
+
 // display duration and position
 static const CGFloat CSToastDefaultDuration     = 3.0;
 static const NSString * CSToastDefaultPosition  = @"bottom";
@@ -207,6 +211,11 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
         wrapperView.layer.shadowOpacity = CSToastShadowOpacity;
         wrapperView.layer.shadowRadius = CSToastShadowRadius;
         wrapperView.layer.shadowOffset = CSToastShadowOffset;
+    }
+    
+    if (CSToastDisplayBorder) {
+        wrapperView.layer.borderWidth = CSToastBorderWidth;
+        wrapperView.layer.borderColor = [[UIColor whiteColor] CGColor];
     }
 
     wrapperView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:CSToastOpacity];
