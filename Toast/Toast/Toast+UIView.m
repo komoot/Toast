@@ -9,6 +9,7 @@
 #import "Toast+UIView.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
+#import <Foundation/Foundation.h>
 
 /*
  *  CONFIGURE THESE VALUES TO ADJUST LOOK & FEEL,
@@ -178,10 +179,23 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
     if([point isKindOfClass:[NSString class]]) {
         // convert string literals @"top", @"bottom", @"center", or any point wrapped in an NSValue object into a CGPoint
         if([point caseInsensitiveCompare:@"top"] == NSOrderedSame) {
+            if ([self isKindOfClass:[UIScrollView class]]) {
+                UIScrollView *scrollView = (UIScrollView *)self;
+                return CGPointMake(self.bounds.size.width/2, scrollView.contentOffset.y + (toast.frame.size.height / 2) + CSToastVerticalPadding);
+            }
             return CGPointMake(self.bounds.size.width/2, (toast.frame.size.height / 2) + CSToastVerticalPadding);
         } else if([point caseInsensitiveCompare:@"bottom"] == NSOrderedSame) {
+            if ([self isKindOfClass:[UIScrollView class]]) {
+                UIScrollView *scrollView = (UIScrollView *)self;
+                return CGPointMake(self.bounds.size.width/2, scrollView.contentOffset.y + scrollView.bounds.size.height - (toast.frame.size.height / 2) - CSToastVerticalPadding);
+            } 
             return CGPointMake(self.bounds.size.width/2, (self.bounds.size.height - (toast.frame.size.height / 2)) - CSToastVerticalPadding);
+        
         } else if([point caseInsensitiveCompare:@"center"] == NSOrderedSame) {
+            if ([self isKindOfClass:[UIScrollView class]]) {
+                UIScrollView *scrollView = (UIScrollView *)self;
+                return CGPointMake(self.bounds.size.width/2, scrollView.contentOffset.y + self.bounds.size.height / 2);
+            }
             return CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
         }
     } else if ([point isKindOfClass:[NSValue class]]) {
