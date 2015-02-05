@@ -380,7 +380,8 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
     if(imageView != nil) {
         [wrapperView addSubview:imageView];
     }
-        
+    
+    wrapperView.layer.zPosition = 1000;
     return wrapperView;
 }
 
