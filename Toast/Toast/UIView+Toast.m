@@ -268,7 +268,7 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
     UIView *wrapperView = [[UIView alloc] init];
     wrapperView.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin);
     wrapperView.layer.cornerRadius = CSToastCornerRadius;
-    wrapperView.layer.zPosition = CGFLOAT_MAX;
+    wrapperView.layer.zPosition = FLT_MAX;
     
     if (CSToastDisplayShadow) {
         wrapperView.layer.shadowColor = [UIColor blackColor].CGColor;
